@@ -53,7 +53,7 @@
 										<argument>-Djava.rmi.server.hostname=localhost</argument>
 										<argument>-classpath</argument>
 										<classpath />
-										<argument>org.jboss.ws.metrics.Server</argument>
+										<argument>org.jboss.ws.metrics.ServletServer</argument>
 									</arguments>
 								</configuration>
 							</execution>
