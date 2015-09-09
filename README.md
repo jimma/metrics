@@ -20,9 +20,8 @@ This demo is a simple webservice is designed to server for 3 level customer, and
 |Premium       |Unlimited     |
 
 Server will reject or slow down the request if it exceeds these limit.  
-This demo uses this limit rate to start webservice endpoint, and client will start 4 thread to call this service. Due to trail user request limit, the first Trail customer thread should be all processed and responded, and second Trail customer thread will start 10000 call , but none of the requests will be 
-servered due to the request limitation. Another two threads are for "Regular" and "Premium" customer. From the result, you can get the "Regular" customer 
-alaways has the slower process speed than the Premium customer.
+This demo uses this limit rate to start webservice endpoint, and client will start 4 threads to call this service. Due to trail user request limit, the first Trail customer thread should be all processed and responded, and second Trail customer thread will start 10000 calls , but none of the requests will be 
+servered due to the request count limitation. Another two threads are for "Regular" and "Premium" customer. 
 ````java
         //good trail user only call 5 times not exceed the limit
         client = new Client("Trial", ss, 5);
@@ -41,12 +40,18 @@ alaways has the slower process speed than the Premium customer.
         
         client = new Client("Premium", ss);
         new Thread(client).start();
-````  
+````
+
+From the result, the "Premium" customer's request can alaways be processed faster than "Regular" customer.
+![result](images/result.png)
+
+  
 Run this demo and simply run **mvn clean install -Pserver** to start server side , and open another terminal to run client with 
 **mvn clean install -Pclient**
 
 There is rest api to monitor all the metrics with url ![http://localhost:8888/metrics](http://localhost:8888/metrics).
 ![rest api](images/rest.png)
+
 You can also start jconsole to connect the client or server local process. 
 ![jconsole](images/jconsole.png)
 
